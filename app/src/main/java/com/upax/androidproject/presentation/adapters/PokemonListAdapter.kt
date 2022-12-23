@@ -27,9 +27,10 @@ class PokemonListAdapter(private val pokemonList: List<PokemonListModel>) :
     inner class PokemonListHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         fun render(pokemon: PokemonListModel) {
             val binding = PokemLayoutBinding.bind(view)
-            val image = CircleImageModel(url = pokemon.url, name = pokemon.name)
+            val name = pokemon.name.replace("-", " ")
+            val image = CircleImageModel(url = pokemon.url, name = name)
             binding.apply {
-                pokemonName.text = pokemon.name
+                pokemonName.text = name
                 CircleImageComponent(pokemonImage, image)
             }
         }

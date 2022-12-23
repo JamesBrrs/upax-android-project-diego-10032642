@@ -1,5 +1,6 @@
 package com.upax.androidproject.presentation.components
 
+import android.content.res.ColorStateList
 import android.graphics.Color
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
@@ -23,6 +24,7 @@ class CircleImageComponent(
     }
 
     private fun setImageFromUrl() {
+        setInitials()
         if (component.url?.isNotEmpty() == true) {
             try {
                 Glide.with(context)
@@ -49,7 +51,7 @@ class CircleImageComponent(
         if (initials.isNotEmpty()) {
             view.initialsText.text = initials.uppercase()
             view.initialsText.show()
-            val color = ContextCompat.getColorStateList(context, setRandomColor())
+            val color = ColorStateList.valueOf(setRandomColor())
             view.circleImage.setBackgroundColor(setRandomColor())
             view.circleImage.strokeColor = color
             view.initialsText.setTextColor(color)

@@ -3,19 +3,17 @@ package com.upax.androidproject.presentation
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.upax.androidproject.databinding.ActivityMainBinding
-import com.upax.androidproject.presentation.viewmodel.MainViewModel
+import com.upax.androidproject.presentation.adapters.PokemonListAdapter
+import com.upax.androidproject.presentation.viewmodel.PokemonListViewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        binding.btn.setOnClickListener {
-            viewModel.getPokemon()
-        }
         setContentView(binding.root)
     }
 }

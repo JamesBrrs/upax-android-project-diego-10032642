@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:layout_marginHorizontal="20dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -23,7 +25,7 @@
             <TextView
                 android:id="@+id/pokemonName"
                 android:layout_width="wrap_content"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:layout_marginStart="20dp"

@@ -14,7 +14,7 @@ import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
 @SuppressLint("StaticFieldLeak")
-class MainViewModel : ViewModel() {
+class PokemonListViewModel : ViewModel() {
 
     private val context = ApplicationApp().getContext()
 
@@ -26,10 +26,16 @@ class MainViewModel : ViewModel() {
     private val _statusService = MutableLiveData<ServiceStatus>()
     val statusService: LiveData<ServiceStatus> get() = _statusService
 
-    fun getPokemon() {
+    private val _image = MutableLiveData<Pair<String,String>>()
+    val image: LiveData<Pair<String,String>> get() = _image
+
+    private val _pokemonList = MutableLiveData<PokemonListResponse>()
+    val pokemonList: LiveData<PokemonListResponse> get() = _pokemonList
+
+    fun getPokemon(limit: Int) {
         setServiceStatus(ServiceStatus.LOADING)
         viewModelScope.launch {
-            val response = pokemonUseCase.invoke()
+            val response = pokemonUseCase.getPokemon(limit)
             when (response.status) {
                 Resource.Status.SUCCESS -> {
                     setServiceStatus(ServiceStatus.SUCCESS)
@@ -37,10 +43,31 @@ class MainViewModel : ViewModel() {
                         Gson().toJson(response.data),
                         PokemonListResponse::class.java
                     )
+                    data.results?.mapIndexed { index, pokemonListModel ->
+                        getPokemonData(index.toString(), pokemonListModel.name)
+                    }
+                    withContext(Dispatchers.Main){
+                        _pokemonList.value = data
+                    }
                     println(data)
                 }
                 else -> {
                     setServiceStatus(ServiceStatus.ERROR)
+                }
+            }
+        }
+    }
+
+    private fun getPokemonData(id: String, name: String){
+        viewModelScope.launch {
+            val response = pokemonUseCase.getPokemonData(name)
+            when (response.status) {
+                Resource.Status.SUCCESS -> {
+                    withContext(Dispatchers.Main){
+                        if (response.data?.sprites?.backDefault.isNullOrEmpty().not()){
+                            _image.value = Pair(response.data!!.sprites!!.backDefault,name)
+                        }
+                    }
                 }
             }
         }
