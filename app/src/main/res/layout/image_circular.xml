@@ -9,8 +9,11 @@
         android:id="@+id/circleImage"
         android:layout_width="140dp"
         android:layout_height="140dp"
+        android:padding="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/black"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:shapeAppearanceOverlay="@style/roundedImageViewRounded" />
