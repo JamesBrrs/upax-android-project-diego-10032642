@@ -5,7 +5,7 @@ import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.upax.androidproject.R
 import com.upax.androidproject.databinding.ImageCircularBinding
-import com.upax.androidproject.domain.model.CirlcleImageModel
+import com.upax.androidproject.domain.model.CircleImageModel
 import com.upax.androidproject.utils.ApplicationApp
 import com.upax.androidproject.utils.hide
 import com.upax.androidproject.utils.show
@@ -13,7 +13,7 @@ import java.util.*
 
 class CircleImageComponent(
     private val view: ImageCircularBinding,
-    private val component: CirlcleImageModel
+    private val component: CircleImageModel
 ) {
 
     private val context = ApplicationApp().getContext()

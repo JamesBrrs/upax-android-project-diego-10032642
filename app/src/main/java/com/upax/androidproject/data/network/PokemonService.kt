@@ -8,7 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class PokemonService : BaseDataSource() {
-    override fun getUrl() = "https://pokeapi.co/api/v2/"
+    override fun getUrl() = "https://pokeapi.co/"
     override fun getClazz() = ApiInterface::class.java
 
     suspend fun getPokemon(): Resource<PokemonListResponse> {

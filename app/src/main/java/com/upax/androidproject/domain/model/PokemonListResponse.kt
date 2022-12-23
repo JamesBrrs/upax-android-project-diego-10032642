@@ -4,5 +4,5 @@ data class PokemonListResponse(
     var count: Int = 0,
     var next: String = "",
     var previous: String = "",
-    var results: PokemonListModel? = null
+    var results: List<PokemonListModel>? = null
 )

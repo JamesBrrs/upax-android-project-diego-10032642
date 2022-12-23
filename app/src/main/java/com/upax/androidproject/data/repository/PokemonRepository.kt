@@ -5,9 +5,9 @@ import com.upax.androidproject.data.network.PokemonService
 import com.upax.androidproject.domain.model.PokemonListResponse
 
 class PokemonRepository {
-    val api = PokemonService()
+    private val api = PokemonService()
 
     suspend fun getPokemon(): Resource<PokemonListResponse> {
-
+        return api.getPokemon()
     }
 }
