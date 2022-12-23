@@ -87,7 +87,7 @@ class PokemonListFragment : Fragment() {
     }
 
     private fun updateInfo(){
-        dataList.mapIndexed { index, pokemonListModel ->
+        dataList.mapIndexed { index, _ ->
             if (index >= total-25)
                 adapter.notifyItemInserted(index)
         }

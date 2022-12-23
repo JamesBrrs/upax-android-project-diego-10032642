@@ -1,6 +1,5 @@
 package com.upax.androidproject.presentation.viewmodel
 
-import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,14 +8,10 @@ import com.upax.androidproject.core.Resource
 import com.upax.androidproject.core.ServiceStatus
 import com.upax.androidproject.domain.model.PokemonListResponse
 import com.upax.androidproject.domain.usecase.PokemonUseCase
-import com.upax.androidproject.utils.ApplicationApp
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
-@SuppressLint("StaticFieldLeak")
 class PokemonListViewModel : ViewModel() {
-
-    private val context = ApplicationApp().getContext()
 
     private val parentJob = Job()
     private val coroutineContext: CoroutineContext get() = parentJob + Dispatchers.IO
@@ -60,7 +55,7 @@ class PokemonListViewModel : ViewModel() {
 
     private fun getPokemonData(id: String, name: String){
         viewModelScope.launch {
-            val response = pokemonUseCase.getPokemonData(name)
+            val response = pokemonUseCase.getPokemonData(id)
             when (response.status) {
                 Resource.Status.SUCCESS -> {
                     withContext(Dispatchers.Main){
@@ -69,6 +64,7 @@ class PokemonListViewModel : ViewModel() {
                         }
                     }
                 }
+                else -> {}
             }
         }
     }
